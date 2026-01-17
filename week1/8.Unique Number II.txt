@@ -1,0 +1,20 @@
+https://www.geeksforgeeks.org/problems/finding-the-numbers0215/1
+
+class Solution {
+  public:
+    vector<int> singleNum(vector<int>& arr) {
+        int xor_sum=0;
+        int n=arr.size();
+        for(int i=0;i<n;i++){
+            xor_sum^=arr[i];
+        }
+        int set_bit=xor_sum & ~(xor_sum-1);
+        int grp1=0,grp2=0;
+        for(int i=0;i<n;i++){
+            if(arr[i] & set_bit)grp1^=arr[i];
+            else grp2^=arr[i];
+        }
+        if(grp1<grp2)return {grp1,grp2};
+        return {grp2,grp1};
+    }
+};
