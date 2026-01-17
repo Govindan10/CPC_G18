@@ -1,0 +1,38 @@
+https://www.interviewbit.com/problems/repeat-and-missing-number-array/
+
+vector<int> Solution::repeatedNumber(const vector<int> &A) {
+    int xor_sum=0;
+    int repeat=-1;
+    int n=A.size();
+    for(int i=0;i<n;i++){
+        xor_sum^=A[i];
+    }
+    int xor1ton;
+    switch (n%4){
+        case 0: xor1ton=n;break;
+        case 1: xor1ton=1;break;
+        case 2: xor1ton=n+1;break;
+        case 3: xor1ton=0;break;
+    }
+    int repxormiss=xor1ton^xor_sum;
+    int set_bit= repxormiss & ~(repxormiss-1);
+    int grp1=0,grp2=0;
+    for(int i=0;i<n;i++){
+        if(A[i] & set_bit)grp1^=A[i];
+        else grp2^=A[i];
+        if((i+1) & set_bit)grp1^=(i+1);
+        else grp2^=(i+1);
+        
+    }
+    bool f=0;
+    for(int i=0;i<n;i++){
+        if(grp1==A[i]){
+            f=1;
+        }
+    }
+    if(f)
+    {
+        return {grp1,grp2};
+    }
+    return {grp2,grp1};
+}
