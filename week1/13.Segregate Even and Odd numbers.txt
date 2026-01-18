@@ -1,0 +1,20 @@
+https://www.geeksforgeeks.org/problems/segregate-even-and-odd-numbers4629/1
+
+void segregateEvenOdd(vector<int>& arr) {
+        int n = arr.size();
+        int start = 0;
+        int end = n - 1;
+        while (start <= end) {
+            if (arr[start] % 2 != 0 && arr[end] % 2 == 0) {
+                swap(arr[start++], arr[end--]);
+            }
+
+            else if (arr[start] % 2 == 0) {
+                start++;
+            } else {
+                end--;
+            }
+        }
+        sort(arr.begin(), arr.begin() + start);
+        sort(arr.begin() + start, arr.end());
+    }
