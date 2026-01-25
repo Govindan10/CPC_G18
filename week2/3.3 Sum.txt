@@ -1,0 +1,40 @@
+https://www.interviewbit.com/problems/3-sum/
+
+int Solution::threeSumClosest(vector<int> &arr, int B) {
+        sort(arr.begin(),arr.end());
+        int closestSum=1e9;
+        int n=arr.size();
+        for(int i=0;i<n;i++){
+            int rem=B-arr[i];
+            int l=0,h=n-1;
+            while(l<h){
+                if(l==i){
+                    l++;
+                    continue;
+                }
+                else if(h==i){
+                    h--;
+                    continue;
+                }
+                int sum=arr[l]+arr[h];
+                if(sum==rem){
+                  
+                        return B;
+                    
+                }
+                else if(sum>rem){
+                    
+                    h--;
+                }
+                else l++;
+           
+                if(abs(B-(sum+arr[i]))<=abs(B-closestSum)){
+                    closestSum=sum+arr[i];
+                    
+                }
+                
+                
+            }
+        }
+        return closestSum;
+}
