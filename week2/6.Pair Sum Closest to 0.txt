@@ -1,0 +1,28 @@
+https://www.geeksforgeeks.org/problems/two-numbers-with-sum-closest-to-zero1737/1
+
+int closestToZero(int arr[], int n) {
+        sort(arr,arr+n);
+        int closestSum=1e9;
+        int l=0,h=n-1;
+        while(l<h){
+            int sum=arr[l]+arr[h];
+            if(abs(sum)<abs(closestSum)){
+                closestSum=sum;
+            }
+            else if(abs(sum)==abs(closestSum)){
+                closestSum=max(closestSum,sum);
+            }
+            if(sum<0){
+                l++;
+            }
+            else if(sum>0){
+                h--;
+            }
+            else {
+                return 0;
+            }
+            
+        }
+        return closestSum;
+            
+    }
