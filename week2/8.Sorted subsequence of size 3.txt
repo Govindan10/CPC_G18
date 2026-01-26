@@ -1,0 +1,27 @@
+https://www.geeksforgeeks.org/problems/sorted-subsequence-of-size-3/1
+
+vector<int> find3Numbers(vector<int> &arr) {
+        // Code here
+        int n=arr.size();
+        if(n<3)return {};
+        int mini=arr[0];
+        int store_min=mini;
+        int smax=INT_MAX;
+        for(int i=1;i<n;i++){
+            if(arr[i]<mini){
+                mini=arr[i];
+                continue;
+            }
+            else if(arr[i]==mini){
+                continue;
+            }
+            else if(arr[i]<smax){
+                smax=arr[i];
+                store_min=mini;
+            }
+            else if(arr[i]>smax){
+                return {store_min,smax,arr[i]};
+            }
+        }
+        return {};
+    }

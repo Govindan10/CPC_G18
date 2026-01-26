@@ -1,0 +1,28 @@
+https://www.geeksforgeeks.org/problems/product-array-puzzle4525/1
+
+vector<int> productExceptSelf(vector<int>& arr) {
+        long long prod=1;
+        int countZero=0;
+        int n=arr.size();
+        int idx=-1;
+        for(int i=0;i<n;i++){
+            if(arr[i]==0){
+                countZero++;
+                idx=i;
+            }
+            else{
+                prod*=(long long)arr[i];
+            }
+        }
+        vector<int> ans(n,0);
+        if(countZero>1)return ans;
+        else if(countZero==1){
+            ans[idx]=prod;
+            return ans;
+        }
+        for(int i=0;i<n;i++){
+            ans[i]=prod/(arr[i]);
+        }
+        return ans;
+        
+    }

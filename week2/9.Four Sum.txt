@@ -1,0 +1,29 @@
+https://leetcode.com/problems/4sum/
+
+ vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        int n=nums.size();
+        set<vector<int>> ans;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int l=j+1,h=n-1;
+                while(l<h){
+                    long long req=(ll)target-(ll)nums[i]-(ll)nums[j];
+                    long long sum=(ll)nums[l]+(ll)nums[h];
+                    if(sum<req){
+                        l++;
+                    }
+                    else if(sum>req){h--;}
+                    else {
+                        ans.insert({nums[i],nums[j],nums[l],nums[h]});                  l++;
+                        h--;
+                    }
+                }
+            }
+        }
+        vector<vector<int>> v;
+        for(auto it:ans){
+            v.push_back(it);
+        }
+        return v;
+    }
