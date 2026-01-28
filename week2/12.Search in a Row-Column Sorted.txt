@@ -1,0 +1,18 @@
+https://www.geeksforgeeks.org/problems/search-in-a-matrix17201720/1#expected-approach-removing-row-or-column-in-each-comparison-on-time-and-o1-space
+
+bool matSearch(vector<vector<int>> &mat, int x) {
+        // your code here
+        int m=mat.size();
+        int n=mat[0].size();
+        int i=0,j=n-1;
+        while(i<m && j>=0){
+            if(x>mat[i][j]){
+                i++;
+            }
+            else if(x<mat[i][j]){
+                j--;
+            }
+            else return 1;
+        }
+        return 0;
+    }
