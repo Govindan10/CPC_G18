@@ -1,0 +1,50 @@
+https://www.geeksforgeeks.org/problems/boolean-matrix-problem-1587115620/1
+
+ void booleanMatrix(vector<vector<int>>& mat) {
+        // code here
+        int m=mat.size();
+        int n=mat[0].size();
+        int f=0;
+        if(mat[0][0])f=2;
+        else{
+        for(int i=0;i<n;i++){
+            if(mat[0][i]){
+                f=1;
+                break;
+            }
+        }
+        for(int i=0;i<m;i++){
+            if(mat[i][0]){
+                if(f==1)f=2;
+                else f=-1;
+                break;
+            }
+        }
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(mat[i][j]){
+                    mat[i][0]=1;
+                    mat[0][j]=1;
+                }
+            }
+        }
+        for(int i=1;i<m;i++){
+            for(int j=1;j<n;j++){
+              
+                if(mat[0][j] || mat[i][0]){
+                    mat[i][j]=1;
+                }
+            }
+        }
+        if(f==2 || f==1){
+        for(int j=0;j<n;j++){
+            mat[0][j]=1;
+        }
+        }
+        if(f==2 || f==-1){
+        for(int i=0;i<m;i++){
+            mat[i][0]=1;
+        }
+        }
+    }
