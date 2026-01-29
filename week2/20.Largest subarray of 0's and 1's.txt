@@ -1,0 +1,23 @@
+https://www.geeksforgeeks.org/problems/largest-subarray-of-0s-and-1s/1#expected-approach-using-hashmap-and-prefix-sum-technique-on-time-and-on-space
+
+int maxLen(vector<int> &arr) {
+        // Your code here
+        int n=arr.size();
+        int maxlen=0;
+        int sum=0;
+        unordered_map<int,int> mpp;
+        for(int i=1;i<=n;i++){
+            sum=(arr[i-1])?sum+1:sum-1;
+            if(sum==0){
+                maxlen=max(maxlen,i);
+            }
+            if(mpp.find(sum)!=mpp.end()){
+                // cout<<mpp[sum]<<" ";
+                maxlen=max(maxlen,i-mpp[sum]);
+            }
+            else{
+                mpp[sum]=i;
+            }
+        }
+        return maxlen;
+    }

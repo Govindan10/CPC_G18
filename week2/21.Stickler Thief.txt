@@ -1,0 +1,15 @@
+https://www.geeksforgeeks.org/problems/stickler-theif-1587115621/1
+
+int findMaxSum(vector<int>& arr) {
+        // code here
+       int  n=arr.size();
+     
+        int last=0,slast=0;
+        int ans=INT_MIN;
+        for(int ind=n-1;ind>=0;ind--){
+            ans=max(slast,arr[ind]+last);
+            last=slast;
+            slast=ans;
+        }
+        return ans;
+    }

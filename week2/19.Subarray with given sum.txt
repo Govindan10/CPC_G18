@@ -1,0 +1,17 @@
+https://www.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1
+
+vector<int> subarraySum(vector<int> &arr, int target) {
+    
+        int left=0;
+        int n=arr.size();
+        int sum=0;
+        for(int r=0;r<n;r++){
+            sum+=arr[r];
+            while(sum>target && left<=r){
+                sum-=arr[left++];
+            }
+            
+            if(sum==target)return {left+1,r+1};
+        }
+        return {-1};
+    }
